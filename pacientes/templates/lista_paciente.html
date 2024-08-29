@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Pacientes</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Pacientes</h1>
+        <a href="{% url 'nuevo_paciente' %}" class="btn btn-primary">Nuevo Paciente</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paciente in pacientes %}
+                <tr>
+                    <td>{{ paciente.dni}}</td>
+                    <td>{{ paciente.nombre }}</td>
+                    <td>{{ paciente.apellido}}</td>
+                    <td>{{ paciente.edad }}</td>
+                    <td>{{ paciente.fecha_nacimiento}}</td>
+                    <td>{{ paciente.email}}</td>
+                    <td>{{ paciente.direccion }}</td>
+                    <td>{{ paciente.telefono }}</td>
+                    <td>
+                        <a href="{% url 'detalle_paciente' paciente.pk %}" class="btn btn-info">Ver</a>
+                        <a href="{% url 'editar_paciente' paciente.pk %}" class="btn btn-warning">Editar</a>
+                        <a href="{% url 'eliminar_paciente' paciente.pk %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
